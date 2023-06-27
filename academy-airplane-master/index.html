@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Holaa Juego de Aviones</title>
+</head>
+<body>
+	<style type="text/css">
+		#ocean{
+			background-image: url("ocean.jpg");
+			width: 900px;
+			height: 700px;
+		}
+
+		.player{
+			position: absolute;
+			background-image: url("player.png");
+			width: 70px;	
+			height: 75px;
+		}
+
+		.enemy{
+			position: absolute;
+			background-image: url("enemy.png");
+			width: 70px;	
+			height: 75px;
+		}
+
+	</style>
+
+<div id="ocean">
+	<div id="players"></div>
+	<div id="enemies"></div>
+</div>
+
+<script type="text/javascript">
+	
+
+	//ESTE OBJETO ES EL AVION QUE COMBATE A LOS ENEMIGOS
+	var player={
+		left: 450,
+		top: 620
+	}
+	
+	// ESTE OBJETO SIRVE PARA CREAR MAS ENEMIGOS
+	var enemies = [
+
+		{left: 350, top: 200},
+		{left: 450, top: 250}
+	
+	];
+
+	// ESTE PARA SIRVE PARA NUESRO AVION
+
+	function drawPlayer(){
+   content = "<div class='player' style='left:"+player.left+"px; top:"+player.top+"px'></div>";
+
+		document.getElementById("players").innerHTML= content;
+
+}
+
+drawPlayer();
+
+		// ESTE PARA SIRVE PARA QUE NUESTROS ENEMIGOS SE CREEN
+
+	function drawEnemies(){
+	content = "";
+	console.log(enemies);
+	for(var idx=0; idx<enemies.length; idx++){
+		content += "<div class='enemy' style='left:"+enemies[idx].left+"px; top:"+enemies[idx].top+"px'></div>";
+	}
+	document.getElementById("enemies").innerHTML = content;	
+	}
+
+	drawEnemies();
+
+
+	// AQUI NOSOTROS LO QUE HAREMOS ES HACER LOS BOTONES PARA INTERACTUAR.
+
+	document.onkeydown = function(e){
+		console.log(e);
+		if(e.keyCode == 37){ // este es izwuierda
+			player.left = player.left -10;
+
+		}
+		//En cada If se agrega un boton 
+		if(e.keyCode == 38){ // este es izwuierda
+			player.top = player.top -10; // se coloca de esta forma
+
+		}
+		//En cada If se agrega un boton 
+		if(e.keyCode == 40){ // este es izwuierda
+			player.top = player.top +10; // se coloca de esta forma
+			
+		}
+				//En cada If se agrega un boton 
+
+		if(e.keyCode == 39){ // esta es la derecha
+			player.left = player.left +10;
+		}
+
+		drawPlayer();
+	}
+
+
+</script>
+
+
+</body>
+</html>
